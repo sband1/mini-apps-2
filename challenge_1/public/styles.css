@@ -1,0 +1,25 @@
+.pagination {
+  display: flex;
+  justify-content: left;
+  list-style: none;
+}
+
+.pagination a {
+  padding: 7px;
+  background-color: rgb(201, 201, 203);
+  border: solid 1.5px;
+  margin: 1px;
+  cursor: pointer;
+}
+
+.eventContainer {
+  max-width: 70%;
+}
+.event {
+  background-color: rgb(234, 234, 244);
+  border: solid 1.5px;
+  border-radius: 10px;
+  min-height: 50px;
+  padding: 5px;
+  margin: 10px;
+}
