@@ -8,7 +8,9 @@ class App extends React.Component {
     this.state = {
       startDate: '',
       endDate: '',
-      data: [],
+      dataDates: [],
+      dataPrices: [],
+      submit: false,
     };
     this.handleDateSubmit = this.handleDateSubmit.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
@@ -33,7 +35,9 @@ class App extends React.Component {
       .then((res) => {
         console.log(res);
         this.setState({
-          data: res.data,
+          dataDates: Object.keys(res.data),
+          dataPrices: Object.values(res.data),
+          submit: true,
         });
       })
       .catch((err) => console.log(err));
@@ -67,7 +71,9 @@ class App extends React.Component {
           </label>
           <button type='submit'>Submit</button>
         </form>
-        <Chart />
+        {this.state.submit ? (
+          <Chart dates={this.state.dataDates} prices={this.state.dataPrices} />
+        ) : null}
       </div>
     );
   }
