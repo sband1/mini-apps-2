@@ -1,19 +1,14 @@
 import React from 'react';
 
-class  extends React.Component {
+class Chart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
-    return (
-      <div>
-
-      </div>
-    );
+    return <div></div>;
   }
 }
 
-export default ;
-
+export default Chart;
