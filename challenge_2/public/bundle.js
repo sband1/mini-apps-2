@@ -178,17 +178,23 @@ var App = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleDateSubmit",
-    value: function handleDateSubmit() {
+    value: function handleDateSubmit(e) {
+      var _this2 = this;
+
       e.preventDefault();
       axios__WEBPACK_IMPORTED_MODULE_2___default()({
         method: 'get',
         url: '/historicalPrices',
         params: {
-          startDate: this.startDate,
-          endDate: this.endDate
+          startDate: this.state.startDate,
+          endDate: this.state.endDate
         }
       }).then(function (res) {
-        return console.log(res);
+        console.log(res);
+
+        _this2.setState({
+          data: res.data
+        });
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -198,17 +204,16 @@ var App = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _React$createElement;
 
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "BTC Historical Prices"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleDateSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, ' ', "Start Date", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "date",
         name: "startDate",
         value: this.state.startDate,
-        require: true,
         onChange: this.handleDateChange
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, ' ', "End Date", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", (_React$createElement = {
         type: "date"
-      }, _defineProperty(_React$createElement, "type", "date"), _defineProperty(_React$createElement, "name", "endDate"), _defineProperty(_React$createElement, "value", this.state.endDate), _defineProperty(_React$createElement, "require", true), _defineProperty(_React$createElement, "onChange", this.handleDateChange), _React$createElement))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, _defineProperty(_React$createElement, "type", "date"), _defineProperty(_React$createElement, "name", "endDate"), _defineProperty(_React$createElement, "value", this.state.endDate), _defineProperty(_React$createElement, "onChange", this.handleDateChange), _React$createElement))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit"
       }, "Submit")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chart_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null));
     }

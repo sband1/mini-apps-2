@@ -20,23 +20,29 @@ class App extends React.Component {
       [e.target.name]: e.target.value,
     });
   }
-  handleDateSubmit() {
+  handleDateSubmit(e) {
     e.preventDefault();
     axios({
       method: 'get',
       url: '/historicalPrices',
       params: {
-        startDate: this.startDate,
-        endDate: this.endDate,
+        startDate: this.state.startDate,
+        endDate: this.state.endDate,
       },
     })
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          data: res.data,
+        });
+      })
       .catch((err) => console.log(err));
   }
 
   render() {
     return (
       <div>
+        <h1>BTC Historical Prices</h1>
         <form onSubmit={this.handleDateSubmit}>
           <label>
             {' '}
@@ -45,7 +51,6 @@ class App extends React.Component {
               type='date'
               name='startDate'
               value={this.state.startDate}
-              require={true}
               onChange={this.handleDateChange}
             ></input>
           </label>
@@ -57,7 +62,6 @@ class App extends React.Component {
               type='date'
               name='endDate'
               value={this.state.endDate}
-              require={true}
               onChange={this.handleDateChange}
             ></input>
           </label>
