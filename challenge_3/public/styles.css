@@ -1,5 +1,5 @@
 table {
-  background-color: rgb(236, 224, 239);
+  background-color: rgb(171, 170, 170);
   width: 600px;
   text-align: center;
   font-size: 22px;
@@ -13,4 +13,17 @@ tr {
 td {
   min-width: 100px;
   border: 3px solid;
+  background-color: rgb(236, 224, 239);
+}
+
+.roundHeader td {
+  background-color: rgb(202, 197, 197);
+}
+
+.scoreTurn td {
+  background-color: rgb(196, 209, 236);
+}
+
+.totalScore td {
+  background-color: rgb(196, 209, 236);
 }

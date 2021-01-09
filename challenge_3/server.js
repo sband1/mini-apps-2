@@ -7,5 +7,5 @@ const publicDir = path.join(__dirname, './public');
 app.use(express.static(publicDir));
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`app listening at http://localhost:${port}`);
 });

@@ -11,7 +11,12 @@ class ScoreBoard extends React.Component {
       <div>
         <table>
           <tbody onClick={this.handleClick}>
-            <tr>
+            <tr className='roundHeader'>
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((round) => {
+                return <td>Round {round}</td>;
+              })}
+            </tr>
+            <tr className='scoreTurn'>
               {this.props.eachTurnScore.map((turn) => {
                 return (
                   <td>
@@ -20,7 +25,7 @@ class ScoreBoard extends React.Component {
                 );
               })}
             </tr>
-            <tr>
+            <tr className='totalScore'>
               {this.props.scoreOnTurnTotal.map((score) => {
                 return <td>{score}</td>;
               })}
