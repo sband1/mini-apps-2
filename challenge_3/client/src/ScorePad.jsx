@@ -9,10 +9,12 @@ class ScorePad extends React.Component {
 
   handleClick(e) {
     console.log(e.target.innerHTML);
+    this.props.handleScore(e.target.innerHTML);
   }
   render() {
     return (
       <div>
+        <h1>Select Your Score!</h1>
         <table>
           <tbody onClick={this.handleClick}>
             <tr>

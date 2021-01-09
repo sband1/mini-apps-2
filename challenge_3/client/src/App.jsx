@@ -1,6 +1,6 @@
 import React from 'react';
 import ScordPad from './ScorePad.jsx';
-import ScoreLedger from './ScoreLedger.jsx';
+import ScoreBoard from './ScoreBoard.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -55,7 +55,7 @@ class App extends React.Component {
       <div>
         <ScordPad handleScore={this.handleScore} />
         <h3>Total Score: {this.state.totalScore}</h3>
-        <ScoreLedger
+        <ScoreBoard
           eachTurnScore={this.state.eachTurnScore}
           scoreOnTurnTotal={this.state.scoreOnTurnTotal}
         />
