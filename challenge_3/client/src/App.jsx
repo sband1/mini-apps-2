@@ -57,7 +57,7 @@ class App extends React.Component {
       allTotalScores[this.state.round] += strikeAmount;
     }
 
-    //if pervious round was a spare, adjust score
+    //if previous round was a spare, adjust score
     if (
       this.state.round !== 0 &&
       this.state.turn === 0 &&
