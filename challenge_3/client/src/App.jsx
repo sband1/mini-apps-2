@@ -31,6 +31,7 @@ class App extends React.Component {
     let turnOrder = 1;
     let nextRound = 0;
     let strikeAmount = 0;
+    let spareAmount = 0;
 
     let allScores = this.state.eachTurnScore.slice();
     allScores[this.state.round][this.state.turn] = score;
@@ -56,10 +57,24 @@ class App extends React.Component {
       allTotalScores[this.state.round] += strikeAmount;
     }
 
+    //if pervious round was a spare, adjust score
+    if (
+      this.state.round !== 0 &&
+      this.state.turn === 0 &&
+      allScores[this.state.round - 1][0] !== 10 &&
+      allScores[this.state.round - 1][0] +
+        allScores[this.state.round - 1][1] ===
+        10
+    ) {
+      allTotalScores[this.state.round - 1] += score;
+      spareAmount += score;
+      allTotalScores[this.state.round] += spareAmount;
+    }
+
     this.setState({
       scoreOnTurnTotal: allTotalScores,
       eachTurnScore: allScores,
-      totalScore: this.state.totalScore + score + strikeAmount,
+      totalScore: this.state.totalScore + score + strikeAmount + spareAmount,
       turn: turnOrder,
       round: this.state.round + nextRound,
     });
