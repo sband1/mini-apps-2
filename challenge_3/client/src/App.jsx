@@ -1,23 +1,52 @@
 import React from 'react';
 import ScordPad from './ScorePad.jsx';
+import ScoreLedger from './ScoreLedger.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      scoreOnTurn: 0,
+      eachTurnScore: [
+        ['-', '-'],
+        ['-', '-'],
+        ['-', '-'],
+        ['-', '-'],
+        ['-', '-'],
+        ['-', '-'],
+        ['-', '-'],
+        ['-', '-'],
+        ['-', '-'],
+        ['-', '-'],
+      ],
+      scoreOnTurnTotal: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       totalScore: 0,
+      turn: 0,
       round: 0,
     };
     this.handleScore = this.handleScore.bind(this);
   }
 
-  handleScore(score) {
-    let amount = Number.parseInt(score);
+  handleScore(amount) {
+    let score = Number.parseInt(amount);
+    let allScores = this.state.eachTurnScore.slice();
+    allScores[this.state.round][this.state.turn] = score;
+    let allTotalScores = this.state.scoreOnTurnTotal.slice();
+    allTotalScores[this.state.round] = score + this.state.totalScore;
+
+    let turnOrder = 1;
+    let nextRound = 0;
+
+    if (this.state.turn === 1) {
+      turnOrder = 0;
+      nextRound = 1;
+    }
+
     this.setState({
-      scoreOnTurn: amount,
-      totalScore: this.state.totalScore + amount,
-      round: 1,
+      scoreOnTurnTotal: allTotalScores,
+      eachTurnScore: allScores,
+      totalScore: this.state.totalScore + score,
+      turn: turnOrder,
+      round: this.state.round + nextRound,
     });
   }
 
@@ -26,6 +55,10 @@ class App extends React.Component {
       <div>
         <ScordPad handleScore={this.handleScore} />
         <h3>Total Score: {this.state.totalScore}</h3>
+        <ScoreLedger
+          eachTurnScore={this.state.eachTurnScore}
+          scoreOnTurnTotal={this.state.scoreOnTurnTotal}
+        />
       </div>
     );
   }
